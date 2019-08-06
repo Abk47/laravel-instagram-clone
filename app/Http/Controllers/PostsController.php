@@ -37,4 +37,9 @@ class PostsController extends Controller
 
         return redirect('/profile/'. auth()->user()->id);
     }
+
+    public function show(\App\Post $post) // Used Route Model Binding - Very Powerful feature
+    {
+        return view('posts.show')->with('post', $post); // Or return view('posts.show',compact('post'));
+    }
 }
