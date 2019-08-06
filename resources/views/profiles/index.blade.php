@@ -11,6 +11,7 @@
             <h1>{{ $user->username }}</h1>
             <a href="/p/create">Add New Post</a>
         </div>
+        <a href="/profile/{{ $user->id }}/edit">Edit Profile</a>
             <div class="d-flex">
             <div class="pr-4"><strong>{{ $user->posts->count() }}</strong> posts</div>
                 <div class="pr-4"><strong>25k</strong> followers</div>
@@ -18,7 +19,7 @@
             </div>
         <div class="pt-4 font-weight-bold">{{ $user->profile->title }}</div>
         <div><p>{{ $user->profile->description }}</p></div>
-        <div><a href="https://{{$user->profile->url}}">{{ $user->profile->url }}<a></div>
+        <div><a href="http://{{$user->profile->url}}">{{ $user->profile->url }}<a></div>
         </div>
     </div>
     
