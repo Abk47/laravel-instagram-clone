@@ -3,6 +3,8 @@
 @section('content')
 <div class="container">
     <form action="/p" enctype="multipart/form-data" method="POST">
+@csrf
+
         <div class="row">
             <div class="col-8 offset-2">
 
@@ -13,7 +15,7 @@
                  <div class="form-group row">
                          <label for="caption" class="col-md-4 col-form-label">Post Caption</label>
      
-                             <input id="caption" type="text" class="form-control @error('caption') is-invalid @enderror" caption="caption" value="{{ old('caption') }}" autofocus>
+                             <textarea id="caption" type="text" name="caption" class="form-control @error('caption') is-invalid @enderror" value="{{ old('caption') }}" autofocus></textarea>
      
                              @error('caption')
                                  <span class="invalid-feedback" role="alert">
@@ -23,13 +25,11 @@
                      </div>
 
                      <div class="row">
-                        <label for="image" class="col-md-4 col-form-label">Post Image</label>
+                        <label for="image" class="col-md-4 col-form-label">Upload Image</label>
                         <input type="file" name="image" id="image" class="form-control-file">
 
                         @error('image')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                            <strong>{{ $message }}</strong>
                         @enderror
                      </div>
 
