@@ -8,10 +8,10 @@ use Intervention\Image\Facades\Image;
 
 class ProfilesController extends Controller
 {
-    public function index($user)
+    public function index(User $user)
     {
-        $user = User::findOrFail($user); // This manually fetches the user from the DB (used only for Demo)
-        return view('profiles.index', compact('user'));
+        $follows = (auth()->user()) ? auth()->user()->following->contains($user->id) : false; // Checks following count
+        return view('profiles.index', compact('user', 'follows'));
     }
 
     public function edit(User $user)
