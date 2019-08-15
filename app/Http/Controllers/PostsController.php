@@ -47,13 +47,32 @@ class PostsController extends Controller
         return redirect('/profile/'. auth()->user()->id);
     }
 
-    public function show(\App\Post $post) // Used Route Model Binding - Very Powerful feature
+    public function show(Post $post) // Used Route Model Binding - Very Powerful feature
     {
         return view('posts.show')->with('post', $post); // Or return view('posts.show',compact('post'));
     }
 
-    public function destroy()
+    public function edit(Post $post)
     {
-        
+        return view('posts.edit', compact('post'));
+    }
+
+    public function update(Request $request, Post $post)
+    {
+        //validate fields
+        $request->validate([
+            'caption' => 'required'
+        ]);
+
+        Post::where('id', $post->id)->update($request->except(['_token', '_method']));
+        return redirect("p/{$post->id}");
+    }
+
+    public function destroy($id)
+    {
+        $user_id = Auth::user();
+        $post = Post::where('post_id', $id)->where('user_id',$user_id)->get();
+        dd($post);
+        // $post->delete();
     }
 }
