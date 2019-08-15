@@ -21,9 +21,12 @@
                         </div>
                     </div>
                     @can('update', $post)
-                    <div>
+                    <div class="d-flex">
                         <a href="/p/{{ $post->id }}/edit" class="pl-5"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a>
-                        <a href="/p/{{ $post->id }}" class="pl-2"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+                        {{-- <a href="/p/{{ $post->id }}" class="pl-2"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a> --}}
+                    </div>
+                    <div class="pl-5">
+                        @include('utils.delete',array( 'url' => URL::route('post.destroy',$post->id),'text' => '<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Delete'))
                     </div>
                     @endcan
                 </div>

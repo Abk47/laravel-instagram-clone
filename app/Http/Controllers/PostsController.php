@@ -70,9 +70,8 @@ class PostsController extends Controller
 
     public function destroy($id)
     {
-        $user_id = Auth::user();
-        $post = Post::where('post_id', $id)->where('user_id',$user_id)->get();
-        dd($post);
-        // $post->delete();
+        $post = Post::find($id);
+        $post->delete();
+        return redirect('/');
     }
 }
