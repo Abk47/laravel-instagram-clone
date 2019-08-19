@@ -65,6 +65,7 @@ class PostsController extends Controller
         ]);
 
         Post::where('id', $post->id)->update($request->except(['_token', '_method']));
+        session()->flash('message', 'Post has been successfully updated');
         return redirect("p/{$post->id}");
     }
 

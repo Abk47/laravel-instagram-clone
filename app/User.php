@@ -30,7 +30,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    // Function that does something when a new USER is created
+    // Function that does something when a new USER is created - Triggers event
     protected static function boot()
     {
         parent::boot(); 
